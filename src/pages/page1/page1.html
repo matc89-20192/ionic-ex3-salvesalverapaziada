@@ -1,20 +1,34 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Page One</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Tarefas</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <img src="assets/icon/favicon.ico" alt="" />
+    <form>
+        <ion-item>
+            <ion-label>Descrição</ion-label>
+            <ion-input id=editDescricao [(ngModel)]="descricao" name="descricao"></ion-input>
+        </ion-item>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+        <ion-item>
+            <ion-label>Prioridade</ion-label>
+            <ion-input id=editPrioridade [(ngModel)]="prioridade" type="number" name="prioridade"></ion-input>
+        </ion-item>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+        <button id=buttonRemover disabled=true ion-button secondary (click)="removerPrimeiro()">Remover 1°</button>
+        <button id=buttonAdicionar ion-button secondary (click)="adicionarItem()">Adicionar</button>
+    </form>
+
+    <ion-list id=listView>
+        <ion-item ion-item *ngFor="let item of items let i= index" (click)="ToqueItem(i)">
+            <div>
+                {{item["descricao"]}}
+            </div>
+            <div>
+                Prioridade: {{item["prioridade"]}}
+            </div>
+        </ion-item>
+    </ion-list>
 </ion-content>
